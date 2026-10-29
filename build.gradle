@@ -1,7 +1,5 @@
-import groovy.json.JsonSlurper
-
 plugins {
-    id 'fabric-loom' version '1.10-SNAPSHOT'
+    id 'fabric-loom' version '1.11-SNAPSHOT'
     id 'maven-publish'
 }
 
