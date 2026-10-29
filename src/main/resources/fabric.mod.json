@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "id": "fakespawner",
+  "version": "${version}",
+  "name": "KingSMP Fake Skeleton Spawner",
+  "description": "Bien Khoi Dong (Copper Block) thanh Long trieu hoi Skeleton giong het KingSMP (stack lồng, GUI 256 Skeleton, nhan EXP, +$ 53.76K / +EXP 512, dap ra du stack).",
+  "authors": [
+    "TapSuight"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/fakespawner/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "client": [
+      "vn.kingsmp.fakespawner.FakeSpawnerClient"
+    ]
+  },
+  "mixins": [
+    "fakespawner.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

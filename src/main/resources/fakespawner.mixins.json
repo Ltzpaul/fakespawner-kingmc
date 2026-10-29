@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "vn.kingsmp.fakespawner.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "ItemStackMixin",
+    "AbstractBlockStateMixin",
+    "WorldRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
