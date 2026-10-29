@@ -15,50 +15,11 @@ repositories {
     mavenCentral()
 }
 
-def resolveLatestYarn(String mcVersion, String fallback) {
-    try {
-        def url = new URL("https://meta.fabricmc.net/v2/versions/yarn/${mcVersion}")
-        def json = new JsonSlurper().parse(url)
-        if (json instanceof List && !json.isEmpty()) {
-            return json[0].version
-        }
-    } catch (Exception ignored) {}
-    return fallback
-}
-
-def resolveLatestLoader(String fallback) {
-    try {
-        def url = new URL("https://meta.fabricmc.net/v2/versions/loader")
-        def json = new JsonSlurper().parse(url)
-        if (json instanceof List && !json.isEmpty()) {
-            return json[0].version
-        }
-    } catch (Exception ignored) {}
-    return fallback
-}
-
-def resolveFabricApi(String mcVersion, String fallback) {
-    try {
-        def url = new URL("https://maven.fabricmc.net/net/fabricmc/fabric-api/fabric-api/maven-metadata.xml")
-        def xml = new XmlSlurper().parse(url)
-        def versions = xml.versioning.versions.version*.text()
-        def matched = versions.findAll { it.endsWith("+${mcVersion}") }
-        if (!matched.isEmpty()) {
-            return matched.last()
-        }
-    } catch (Exception ignored) {}
-    return fallback
-}
-
-def resolvedYarn = resolveLatestYarn(project.minecraft_version, project.yarn_mappings)
-def resolvedLoader = resolveLatestLoader(project.loader_version)
-def resolvedFabricApi = resolveFabricApi(project.minecraft_version, project.fabric_version)
-
 dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
-    mappings "net.fabricmc:yarn:${resolvedYarn}:v2"
-    modImplementation "net.fabricmc:fabric-loader:${resolvedLoader}"
-    modImplementation "net.fabricmc.fabric-api:fabric-api:${resolvedFabricApi}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
 }
 
 processResources {
